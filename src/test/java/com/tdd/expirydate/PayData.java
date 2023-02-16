@@ -1,4 +1,4 @@
-package expirydate;
+package com.tdd.expirydate;
 
 import java.time.LocalDate;
 

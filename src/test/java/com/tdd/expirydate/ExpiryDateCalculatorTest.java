@@ -1,4 +1,4 @@
-package expirydate;
+package com.tdd.expirydate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

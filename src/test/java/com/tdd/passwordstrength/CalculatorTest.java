@@ -1,4 +1,4 @@
-package passwordstrength;
+package com.tdd.passwordstrength;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
