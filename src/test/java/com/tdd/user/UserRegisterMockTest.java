@@ -1,11 +1,12 @@
 package com.tdd.user;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
@@ -39,5 +40,19 @@ public class UserRegisterMockTest {
     BDDMockito.then(mockPasswordChecker)
         .should()
         .checkPasswordWeak(BDDMockito.anyString());
+  }
+
+  @DisplayName("가입하면 메일 전송")
+  @Test
+  public void whenRegisterThenSendMail() throws Exception {
+    userRegister.register("id", "pw", "email@email.com");
+
+    ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+    BDDMockito.then(mockEmailNotifier)
+        .should()
+        .sendRegisterEmail(captor.capture());
+
+    String realEmail = captor.getValue();
+    assertEquals("email@email.com", realEmail);
   }
 }
