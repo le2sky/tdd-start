@@ -1,5 +1,6 @@
 package com.tdd.user;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class UserRegisterTest {
-
 
   private UserRegister userRegister;
   private StubWeakPasswordChecker stubWeakPasswordChecker = new StubWeakPasswordChecker();
@@ -36,5 +36,15 @@ public class UserRegisterTest {
     assertThrows(DupIdException.class, () -> {
       userRegister.register("id", "pw2", "email");
     });
+  }
+
+  @DisplayName("같은 ID가 없으면 가입 성공")
+  @Test
+  public void noDupId_RegisterSuccess() throws Exception {
+    userRegister.register("id", "pw", "email");
+
+    User savedUser = fakeRepository.findById("id");
+    assertEquals("id", savedUser.getId());
+    assertEquals("email", savedUser.getEmail());
   }
 }
