@@ -29,6 +29,15 @@ public class UserRegisterMockTest {
     assertThrows(WeakPasswordException.class, () -> {
       userRegister.register("id", "pw", "email");
     });
+  }
 
+  @DisplayName("회원 가입시 암호 검사 수행")
+  @Test
+  public void checkPassword() throws Exception {
+    userRegister.register("id", "pw", "email");
+
+    BDDMockito.then(mockPasswordChecker)
+        .should()
+        .checkPasswordWeak(BDDMockito.anyString());
   }
 }
