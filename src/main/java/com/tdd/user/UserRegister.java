@@ -4,10 +4,13 @@ public class UserRegister {
 
   private WeakPasswordChecker passwordChecker;
   private UserRepository userRepository;
+  private EmailNotifier emailNotifier;
 
-  public UserRegister(WeakPasswordChecker passwordChecker, UserRepository userRepository) {
+  public UserRegister(WeakPasswordChecker passwordChecker, UserRepository userRepository,
+      EmailNotifier emailNotifier) {
     this.passwordChecker = passwordChecker;
     this.userRepository = userRepository;
+    this.emailNotifier = emailNotifier;
   }
 
   public void register(String id, String pw, String email) {
