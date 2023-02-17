@@ -1,6 +1,7 @@
 package com.tdd.user;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class UserRegisterTest {
   public void weekPassword() throws Exception {
     stubWeakPasswordChecker.setWeak(true);
 
-    Assertions.assertThrows(WeakPasswordException.class, () -> {
+    assertThrows(WeakPasswordException.class, () -> {
       userRegister.register("id", "pw", "email");
     });
   }

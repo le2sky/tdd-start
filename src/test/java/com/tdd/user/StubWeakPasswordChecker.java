@@ -1,6 +1,6 @@
 package com.tdd.user;
 
-public class StubWeakPasswordChecker implements WeekPasswordChecker {
+public class StubWeakPasswordChecker implements WeakPasswordChecker {
 
   private boolean weak;
 
