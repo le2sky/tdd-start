@@ -14,5 +14,6 @@ public class UserRegister {
     if (passwordChecker.checkPasswordWeak(pw)) {
       throw new WeakPasswordException();
     }
+    throw new DupIdException();
   }
 }
